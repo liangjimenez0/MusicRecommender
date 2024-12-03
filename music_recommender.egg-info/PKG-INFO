@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: music_recommender
+Version: 0.1
+Summary: A music recommendation system based on Spotify audio features.
+Home-page: https://github.com/liangjimenez0/music-recommender
+Author: Liang Jimenez
+Author-email: liang.jimenez@gmail.com
+Requires-Dist: pandas
+Requires-Dist: scikit-learn
+Requires-Dist: spotipy
+Requires-Dist: flask

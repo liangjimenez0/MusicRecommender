@@ -1,0 +1,12 @@
+setup.py
+music_recommender.egg-info/PKG-INFO
+music_recommender.egg-info/SOURCES.txt
+music_recommender.egg-info/dependency_links.txt
+music_recommender.egg-info/requires.txt
+music_recommender.egg-info/top_level.txt
+recommender/__init__.py
+recommender/data_loader.py
+recommender/normalizer.py
+recommender/recommender.py
+recommender/similarity.py
+recommender/spotify_api.py
