@@ -57,9 +57,28 @@ def recommend():
     if not song_name:
         return jsonify({"error": "Song name is required"}), 400
 
-    recommendations = recommender.recommend_with_data(df, scaler, audio_features, song_name, top_n=10)
+    # Find the song details from the dataset
+    song_details = df[df['track_name'].str.lower() == song_name.lower()]
+    if song_details.empty:
+        return jsonify({"error": "Song not found in the dataset"}), 404
+
+    # Get the artist(s) for the searched song
+    searched_artist = song_details.iloc[0]['artists']
+    searched_track_name = song_details.iloc[0]['track_name']
+
+    # Get recommendations
+    recommendations = recommender.recommend_with_data(df, scaler, audio_features, song_name, top_n=20)  # Fetch more than 10 initially to account for filtering
     if recommendations is None or recommendations.empty:
         return jsonify({"error": "No recommendations found"}), 404
+
+    # Filter out the same song and artist
+    recommendations = recommendations[
+        ~((recommendations['track_name'].str.lower() == searched_track_name.lower()) &
+          (recommendations['artists'].str.lower() == searched_artist.lower()))
+    ]
+
+    # Limit to the top 10 results after filtering
+    recommendations = recommendations.head(10)
 
     try:
         # Format artists for JSON response
@@ -71,6 +90,7 @@ def recommend():
         return jsonify({"error": f"Failed to prepare recommendations: {str(e)}"}), 500
 
     return jsonify({"recommendations": json_data})
+
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,0 +1,53 @@
+.dropdown-item {
+  padding: 12px;
+  background-color: #e5e5e5;
+  border-radius: 8px;
+  margin-top: 12px;
+  font-family: "Helvetica Now Micro";
+  font-weight: normal;
+  font-size: 0.8em;
+}
+
+.dropdown-item:hover {
+  background-color: #d9d9d9;
+}
+
+.form-control {
+  padding: 12px;
+  border-radius: 8px;
+  width: 97%;
+  font-family: "Helvetica Now Micro";
+  font-weight: normal;
+  font-size: 0.8em;
+}
+
+.recommendations-title {
+  font-family: "Salvatore Book";
+  font-weight: 300;
+  font-style: normal;
+}
+
+.recommendations-list {
+  padding: 0px;
+}
+
+.recommendations-item {
+  padding: 12px;
+  background-color: #e5e5e5;
+  border-radius: 8px;
+  margin-top: 12px;
+  list-style: none;
+  font-family: "Helvetica Now Micro";
+  font-weight: normal;
+  font-size: 0.8em;
+}
+
+.no-recs {
+  font-family: "Helvetica Now Micro";
+  font-weight: normal;
+  font-size: 0.8em;
+}
+
+.bold {
+  font-weight: 600;
+}
