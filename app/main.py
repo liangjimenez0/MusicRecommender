@@ -77,7 +77,12 @@ def recommend():
           (recommendations['artists'].str.lower() == searched_artist.lower()))
     ]
 
-    # Limit to the top 10 results after filtering
+    # Add popularity as a sorting feature (assuming your dataset has a 'popularity' column)
+    if 'popularity' in df.columns:
+        recommendations['popularity'] = recommendations['track_id'].apply(lambda track_id: df[df['track_id'] == track_id]['popularity'].values[0])
+        recommendations = recommendations.sort_values(by=['popularity'], ascending=False)
+
+    # Limit to the top 10 results after filtering and sorting by popularity
     recommendations = recommendations.head(10)
 
     try:
@@ -90,6 +95,7 @@ def recommend():
         return jsonify({"error": f"Failed to prepare recommendations: {str(e)}"}), 500
 
     return jsonify({"recommendations": json_data})
+
 
 
 if __name__ == '__main__':

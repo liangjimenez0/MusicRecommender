@@ -9,6 +9,7 @@ const SearchBar = ({ onSearch }) => {
   const handleSearch = async (searchTerm) => {
     if (!searchTerm.trim()) {
       setSearchResults([]);
+      onSearch(""); // Clear recommendations when input is cleared
       return;
     }
 
@@ -28,8 +29,9 @@ const SearchBar = ({ onSearch }) => {
   };
 
   const handleInputChange = (e) => {
-    setSearchTerm(e.target.value);
-    handleSearch(e.target.value);
+    const value = e.target.value;
+    setSearchTerm(value);
+    handleSearch(value);
   };
 
   const handleSongClick = (song) => {
